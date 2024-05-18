@@ -5,9 +5,9 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         String N = br.readLine();
-        int num = Integer.parseInt(N, 2) * 17;
+        long num = Long.parseLong(N, 2) * 17;
 
-        String answer = Integer.toBinaryString(num);
+        String answer = Long.toBinaryString(num);
         System.out.println(answer);
     }
 }
