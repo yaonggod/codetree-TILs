@@ -94,7 +94,7 @@ public class Main {
 					fd = 2;
 					value = result2;
 				}
-				if (result3 > value && fd > 3) {
+				if (result3 > value) {
 					fx = j;
 					fy = i;
 					fd = 3;
