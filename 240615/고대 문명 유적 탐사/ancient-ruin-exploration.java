@@ -64,14 +64,20 @@ public class Main {
 		
 		int fx = -1;
 		int fy = -1;
-		int fd = 0;
+		int fd = 4;
 		
 		for (int i = 0; i <= 2; i++) {
-			for (int j = 2; j >= 0; j--) {
+			for (int j = 0; j <= 2; j++) {
 				int result1 = turn90(j, i, false);
 				int result2 = turn180(j, i, false);
 				int result3 = turn270(j, i, false);
+				
 				if (result1 > value) {
+					fx = j;
+					fy = i;
+					fd = 1;
+					value = result1;
+				} else if (result1 == value && fd > 1) {
 					fx = j;
 					fy = i;
 					fd = 1;
@@ -82,11 +88,21 @@ public class Main {
 					fy = i;
 					fd = 2;
 					value = result2;
-				}
-				if (result3 > value) {
+				} else if (result2 == value && fd > 2) {
 					fx = j;
 					fy = i;
-					fd = 1;
+					fd = 2;
+					value = result2;
+				}
+				if (result3 > value && fd > 3) {
+					fx = j;
+					fy = i;
+					fd = 3;
+					value = result3;
+				} else if (result3 == value && fd > 3) {
+					fx = j;
+					fy = i;
+					fd = 3;
 					value = result3;
 				}
 			}
@@ -173,7 +189,7 @@ public class Main {
 				int ox = x + i;
 				int oy = y + j;
 				int nx = x + 2 - j;
-				int ny = y + 2 - i;
+				int ny = y + i;
 				newLand[nx][ny] = land[ox][oy];
 			}
 		}
@@ -243,15 +259,17 @@ public class Main {
 	
 	static void tryTreasure() {
 		while (true) {
+			
 			// 지금 땅에서 유물 찾기
 			int total = treasure(land);
 			
 			if (total == 0) return;
-			
 			answer += total;
+			
 			
 			// 유물 지우기
 			deleteTreasure();
+			
 		}
 	}
 	
